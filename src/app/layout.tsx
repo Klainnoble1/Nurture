@@ -1,5 +1,6 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
   title: {
@@ -44,6 +45,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: '#16a34a',
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -51,36 +58,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="theme-color" content="#16a34a" />
-      </head>
-      <body>
+      <body className="antialiased">
         {children}
-        
-        {/* Cookie Banner */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (!localStorage.getItem('cookies_accepted')) {
-                document.body.insertAdjacentHTML('beforeend', \`
-                  <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(15, 23, 42, 0.99) 100%); backdrop-filter: blur(12px); color: #e2e8f0; padding: 1rem 1.5rem; z-index: 9999; border-top: 1px solid rgba(148, 163, 184, 0.2); font-family: 'DM Sans', system-ui, sans-serif;">
-                    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
-                      <p style="margin: 0; font-size: 0.9375rem; line-height: 1.5;">We use cookies to improve your experience and analyse site traffic. By continuing, you accept our <a href="/privacy-policy" style="color: #4ade80; text-decoration: underline;">cookie policy</a>.</p>
-                      <div style="display: flex; gap: 0.75rem;">
-                        <button onclick="document.getElementById('cookie-banner').remove()" style="padding: 0.5rem 1.25rem; border: 1px solid rgba(248, 250, 252, 0.3); background: transparent; color: #e2e8f0; cursor: pointer; border-radius: 8px; font-size: 0.875rem; font-weight: 500;">Decline</button>
-                        <button onclick="localStorage.setItem('cookies_accepted', 'true'); document.getElementById('cookie-banner').remove()" style="padding: 0.5rem 1.25rem; background: #16a34a; color: white; cursor: pointer; border-radius: 8px; font-size: 0.875rem; font-weight: 600;">Accept</button>
-                      </div>
-                    </div>
-                  </div>
-                \`);
-              }
-            `,
-          }}
-        />
+        <CookieBanner />
       </body>
     </html>
   );

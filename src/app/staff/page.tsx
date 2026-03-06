@@ -9,13 +9,14 @@ export const metadata = {
 export default function StaffPage() {
   return (
     <PageLayout>
-      <div className="bg-slate-50 py-16 md:py-24">
+      <div className="bg-gradient-to-b from-warm-50 via-white to-nest-50 py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="inline-block px-3 py-1.5 bg-nest-100 text-nest-700 rounded-lg text-sm font-semibold mb-6">Our Community</span>
+          <span className="inline-block px-3 py-1.5 bg-nest-200 text-nest-800 rounded-lg text-sm font-semibold mb-6">Our Community</span>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">Our Staff</h1>
           <p className="text-xl text-slate-600 mb-10">A dedicated, qualified team who put children at the heart of everything we do.</p>
           <section className="space-y-6 text-slate-600 leading-relaxed">
             <p>Our educators are experienced in early years practice, multilingual development, and inclusive education. We maintain high staff-to-child ratios and support continuous professional development so our team can offer the best for every child.</p>
+            <p><strong>Staff log in:</strong> Our team uses Tapestry for learning journals and day-to-day management. <a href="https://tapestryjournal.com/" target="_blank" rel="noopener noreferrer" className="text-nest-600 font-medium hover:underline">Log in to Tapestry</a>.</p>
             <p>Want to join us? See our <Link href="/careers" className="text-nest-600 font-medium hover:underline">Join Our Team</Link> page for current vacancies.</p>
           </section>
           <div className="mt-14">

@@ -1,10 +1,13 @@
 import PageLayout from '@/app/PageLayout';
 import Button from '@/components/Button';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Contact Us',
   description: 'Visit or get in touch with Nurture Nest Multilingual Nursery, central London SE1.',
 };
+
+const CONTACT_IMAGE = '/kidsplaying1.jpeg';
 
 const hours = [
   { day: 'Mon', hours: '09:00 – 17:00' },
@@ -19,13 +22,16 @@ const hours = [
 export default function ContactPage() {
   return (
     <PageLayout>
-      <div className="bg-slate-50 py-16 md:py-24">
+      <div className="bg-gradient-to-b from-nest-50 via-white to-warm-50 py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-4">Contact Us</h1>
           <p className="text-xl text-slate-600 mb-12">Better yet, see us in person. We would love to meet you.</p>
 
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div>
+              <div className="relative aspect-[3/2] rounded-2xl overflow-hidden shadow-soft ring-2 ring-nest-200/60 mb-8">
+                <Image src={CONTACT_IMAGE} alt="Parent and child at nursery" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+              </div>
               <p className="text-slate-600 leading-relaxed mb-8">
                 We have the luxury of a very central location, with our nursery based in the heart of central London (SE1)—local to the Shard, Borough Market, South Bank, London Bridge and Tower Bridge, and just a few minutes walk from London Bridge tube station.
               </p>
@@ -37,6 +43,11 @@ export default function ContactPage() {
                 <div>
                   <p className="text-slate-600">
                     <a href="tel:+447956176257" className="text-nest-600 font-medium hover:underline">+44 7956 176 257</a>
+                  </p>
+                </div>
+                <div>
+                  <p className="text-slate-600">
+                    Staff and parents: <a href="https://tapestryjournal.com/" target="_blank" rel="noopener noreferrer" className="text-nest-600 font-medium hover:underline">Log in to Tapestry</a>
                   </p>
                 </div>
                 <div>

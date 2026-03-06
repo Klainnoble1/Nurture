@@ -26,6 +26,7 @@ export default function RegistrationPage() {
               <li>Complete the registration form and return it with any required documents</li>
               <li>We will confirm your place and discuss start dates and settling in</li>
             </ul>
+            <p><strong>Parents:</strong> Once your child is with us, you can view their learning journal and stay in touch via our platform. <a href="https://tapestryjournal.com/" target="_blank" rel="noopener noreferrer" className="text-nest-600 font-medium hover:underline">Log in to Tapestry</a>.</p>
           </section>
           <div className="mt-14 flex flex-wrap gap-4">
             <Button href="/contact" size="lg" variant="primary">Contact us to register</Button>

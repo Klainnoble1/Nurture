@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'wonder';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   href?: string;
@@ -22,15 +22,17 @@ export default function Button({
   disabled = false,
 }: ButtonProps) {
   const base =
-    'font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 inline-flex';
+    'font-bold rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 inline-flex';
 
   const variants = {
     primary:
-      'bg-nest-600 text-white shadow-soft hover:bg-nest-700 hover:shadow-soft-lg hover:-translate-y-0.5 active:translate-y-0',
+      'bg-nest-500 text-white shadow-lg shadow-nest-500/20 hover:bg-nest-600 hover:shadow-xl hover:shadow-nest-500/30 hover:-translate-y-1 active:translate-y-0',
     secondary:
-      'bg-warm-500 text-white shadow-soft hover:bg-warm-600 hover:shadow-soft-lg hover:-translate-y-0.5 active:translate-y-0',
+      'bg-joy-500 text-white shadow-lg shadow-joy-500/20 hover:bg-joy-600 hover:shadow-xl hover:shadow-joy-500/30 hover:-translate-y-1 active:translate-y-0',
+    wonder:
+      'bg-wonder-500 text-white shadow-lg shadow-wonder-500/20 hover:bg-wonder-600 hover:shadow-xl hover:shadow-wonder-500/30 hover:-translate-y-1 active:translate-y-0',
     outline:
-      'border-2 border-nest-600 text-nest-700 hover:bg-nest-50 hover:border-nest-700 active:scale-[0.98]',
+      'border-2 border-slate-200 text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300 active:scale-[0.98]',
   };
 
   const sizes = {

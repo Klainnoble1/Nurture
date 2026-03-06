@@ -13,14 +13,18 @@
 :root {
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
-  --color-primary: #16a34a;
-  --color-primary-dark: #15803d;
-  --color-accent: #f59e0b;
+  --color-primary: #10b981;
+  --color-primary-light: #34d399;
+  --color-secondary: #3b82f6;
+  --color-accent: #f97316;
+  --color-joy: #f97316;
+  --color-wonder: #a855f7;
   --color-dark: #0f172a;
   --color-light: #f8fafc;
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --radius: 0.75rem;
-  --radius-lg: 1rem;
+  --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 3rem;
 }
 
 html {
