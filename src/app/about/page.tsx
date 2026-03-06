@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/app/PageLayout';
 
-const ABOUT_HERO_IMAGE = '/kidsplaying1.jpeg';
-const ABOUT_SECOND_IMAGE = '/kidsplaying2.jpeg';
+const ABOUT_HERO_IMAGE = '/papazachariasa-park-4836077_1920.jpg';
+const ABOUT_SECOND_IMAGE = '/stocksnap-swing-2563691_1920.jpg';
 
 export const metadata = {
   title: 'About Us',

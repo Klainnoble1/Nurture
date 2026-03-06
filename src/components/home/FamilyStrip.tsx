@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-const FAMILIES_STRIP_1 = '/kidsplaying1.jpeg';
-const FAMILIES_STRIP_2 = '/kidsplaying2.jpeg';
-const FAMILIES_STRIP_3 = '/kidsplaying1.jpeg';
+const FAMILIES_STRIP_1 = '/infotimisoara-park-6794883_1920.jpg';
+const FAMILIES_STRIP_2 = '/haodogforyoupdx-slide-6857337_1920.jpg';
+const FAMILIES_STRIP_3 = '/qimono-children-1730248_1920.jpg';
 
 export default function FamilyStrip() {
   const images = [

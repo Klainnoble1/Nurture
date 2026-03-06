@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Button from '@/components/Button';
 
-const CTA_IMAGE = '/kidsplaying2.jpeg';
+const CTA_IMAGE = '/5712495-playground-2457321_1920.jpg';
 
 export default function CTASection() {
   return (
@@ -24,7 +24,7 @@ export default function CTASection() {
                 Give your child an inclusive and nurturing start.
               </p>
               <div className="pt-4">
-                <Button href="/registration" size="lg" variant="secondary" className="bg-white text-nest-600 hover:bg-nest-50 border-none rounded-2xl px-10 shadow-xl shadow-black/10">
+                <Button href="/registration" size="lg" className="bg-joy-500 text-white hover:bg-slate-900 hover:text-white border-none rounded-2xl px-10 shadow-xl shadow-joy-500/20">
                   Register now
                 </Button>
               </div>
