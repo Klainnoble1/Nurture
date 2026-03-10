@@ -23,28 +23,28 @@ export default function NutritionPage() {
 
           <section className="space-y-8">
             <p className="text-slate-600 leading-relaxed text-lg">
-              At Nurture Nest we believe good nutrition is part of a child&apos;s overall wellbeing and learning. We provide balanced meals and snacks that support growth, energy, and concentration, and we follow dietary guidance suitable for early years.
+              At our nursery, we strongly believe in supporting healthy eating habits from the very start of a child’s journey. Good nutrition plays an important role in children’s growth, wellbeing and development.
             </p>
-            <div>
-              <h2 className="text-2xl font-display font-bold text-slate-900 mb-4">What we offer</h2>
-              <ul className="space-y-3 text-slate-600">
-                <li className="flex gap-3"><span className="text-nest-600 font-bold">•</span> Balanced meals and snacks in line with healthy eating guidelines</li>
-                <li className="flex gap-3"><span className="text-nest-600 font-bold">•</span> Accommodation of allergies, intolerances, and cultural or religious dietary needs</li>
-                <li className="flex gap-3"><span className="text-nest-600 font-bold">•</span> Positive mealtime experiences and social eating</li>
-                <li className="flex gap-3"><span className="text-nest-600 font-bold">•</span> Information for parents about menus and food policy on request</li>
-              </ul>
+            <p className="text-slate-600 leading-relaxed text-lg">
+              That is why our meals are provided by Nursery Kitchen, a specialist catering company that focuses on creating meals with carefully planned nutritional value for young children. All meals are prepared using no added salt and no added sugar, ensuring that children receive balanced, wholesome food that supports healthy development in every aspect.
+            </p>
+            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm mt-8">
+              <h2 className="text-2xl font-display font-bold text-slate-900 mb-4">View our Menu</h2>
+              <p className="text-slate-600 leading-relaxed mb-6">
+                Parents can view the weekly menus directly on our website, allowing you to see what meals are planned for the week ahead. Menus can also be downloaded for your convenience if you would like to keep a copy at home.
+              </p>
+              <a href="/menu-download.pdf" target="_blank" className="inline-flex items-center justify-center px-6 py-3 bg-nest-600 text-white font-semibold rounded-xl hover:bg-nest-700 transition-colors">
+                Download Nursery Menu
+              </a>
             </div>
-            <p className="text-slate-600 leading-relaxed">
-              If your child has specific dietary requirements, please discuss these with us when you <Link href="/contact" className="text-nest-600 font-medium hover:underline">register or get in touch</Link>. We are happy to share our full food and nutrition policy on request.
-            </p>
           </section>
 
-          <div className="mt-14 flex flex-wrap gap-4">
-            <Link href="/curriculum-framework" className="inline-flex items-center justify-center px-6 py-3 bg-nest-600 text-white font-semibold rounded-xl hover:bg-nest-700 transition-colors">
-              Curriculum Framework
+          <div className="mt-14 flex flex-wrap gap-4 border-t border-slate-100 pt-10">
+            <Link href="/curriculum-framework" className="inline-flex items-center justify-center px-6 py-3 bg-nest-100 text-nest-700 font-semibold rounded-xl hover:bg-nest-200 transition-colors">
+              Our Curriculum
             </Link>
-            <Link href="/settling-in" className="inline-flex items-center justify-center px-6 py-3 border-2 border-nest-600 text-nest-700 font-semibold rounded-xl hover:bg-nest-50 transition-colors">
-              Settling In
+            <Link href="/typical-day" className="inline-flex items-center justify-center px-6 py-3 border-2 border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-colors">
+              A typical day
             </Link>
           </div>
         </div>

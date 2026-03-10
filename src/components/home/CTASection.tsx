@@ -13,9 +13,9 @@ export default function CTASection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-white/10 backdrop-blur-md rounded-[3rem] p-8 md:p-16 border border-white/20 shadow-2xl overflow-hidden">
+        <div className="bg-white/10 backdrop-blur-md rounded-[3rem] p-8 md:p-16 border border-white/20 shadow-2xl overflow-hidden animate-fade-in">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-white space-y-6 text-center md:text-left">
+            <div className="text-white space-y-6 text-center md:text-left animate-slide-up">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
                 Ready to join <br/>our <span className="text-joy-300">community</span>?
               </h2>
@@ -24,13 +24,13 @@ export default function CTASection() {
                 Give your child an inclusive and nurturing start.
               </p>
               <div className="pt-4">
-                <Button href="/registration" size="lg" className="bg-joy-500 text-white hover:bg-slate-900 hover:text-white border-none rounded-2xl px-10 shadow-xl shadow-joy-500/20">
+                <Button href="/registration" size="lg" variant="secondary" className="bg-joy-400 text-slate-900 hover:bg-joy-500 border-none rounded-2xl px-10 shadow-xl shadow-black/10">
                   Register now
                 </Button>
               </div>
             </div>
             
-            <div className="relative">
+            <div className="relative animate-slide-up [animation-delay:120ms]">
               <div className="aspect-square max-w-sm mx-auto rounded-[2rem] overflow-hidden shadow-2xl ring-8 ring-white/20 transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <Image
                   src={CTA_IMAGE}

@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-const FAMILIES_STRIP_1 = '/infotimisoara-park-6794883_1920.jpg';
-const FAMILIES_STRIP_2 = '/haodogforyoupdx-slide-6857337_1920.jpg';
-const FAMILIES_STRIP_3 = '/qimono-children-1730248_1920.jpg';
+const FAMILIES_STRIP_1 = '/gallery/toddler-room/10.jpeg';
+const FAMILIES_STRIP_2 = '/gallery/baby-room/18.jpeg';
+const FAMILIES_STRIP_3 = '/gallery/garden/25.jpeg';
 
 export default function FamilyStrip() {
   const images = [
@@ -17,7 +17,7 @@ export default function FamilyStrip() {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-16 space-y-4 animate-slide-up">
           <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 leading-tight">
             Happy families, happy <span className="text-joy-500 underline decoration-joy-200 decoration-8 underline-offset-8">little ones</span>
           </h2>
@@ -30,7 +30,8 @@ export default function FamilyStrip() {
           {images.map((img, i) => (
             <div 
               key={i} 
-              className={`relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl ring-4 ring-white transition-all duration-500 hover:scale-105 hover:rotate-0 ${img.rotate}`}
+              className={`relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl ring-4 ring-white transition-all duration-500 hover:scale-105 hover:rotate-0 animate-slide-up ${img.rotate}`}
+              style={{ animationDelay: `${i * 120}ms` }}
             >
               <Image 
                 src={img.src} 

@@ -29,35 +29,44 @@ export default function PoliciesPage() {
           </p>
 
           <section className="space-y-10">
-            <div>
-              <h2 className="text-2xl font-display font-bold text-slate-900 mb-4">Policies</h2>
-              <p className="text-slate-600 leading-relaxed mb-6">
-                We maintain clear policies on safeguarding, inclusion, behaviour, health and safety, and confidentiality. Full policy documents are available on request. Our approach is inclusive and aligned with the EYFS and British values.
+            <div className="prose prose-slate prose-lg max-w-none">
+              <p>
+                At our nursery, we follow a comprehensive set of policies and procedures to ensure the safety, wellbeing and high-quality care of every child in our setting.
               </p>
-              <p className="text-slate-600 leading-relaxed">
-                For detailed policy documents or to discuss any aspect of our practice, please <Link href="/contact" className="text-nest-600 font-medium hover:underline">contact us</Link>.
+              <p>
+                These policies guide how we operate daily and help us maintain a safe, secure and supportive environment for all children, families and staff.
               </p>
             </div>
 
-            <div>
-              <h2 className="text-2xl font-display font-bold text-slate-900 mb-6">Frequently Asked Questions</h2>
-              <ul className="space-y-6">
-                {faqs.map((faq, i) => (
-                  <li key={i} className="bg-white p-6 rounded-xl border border-slate-200">
-                    <h3 className="font-display font-semibold text-slate-900 mb-2">{faq.q}</h3>
-                    <p className="text-slate-600">{faq.a}</p>
-                  </li>
-                ))}
-              </ul>
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-nest-50 rounded-bl-full flex items-start justify-end p-6"><span className="text-nest-500 text-4xl">📄</span></div>
+              <h2 className="text-2xl font-display font-bold text-slate-900 mb-6 relative z-10">Reviewing Our Policies</h2>
+              <div className="space-y-4 relative z-10 text-slate-600 leading-relaxed">
+                <p>
+                  Parents who secure a place at the nursery will receive a copy of our policies and procedures as part of the registration process. We ask parents to read through these carefully and sign to confirm that they have understood and agreed to the nursery’s policies.
+                </p>
+                <p>
+                  If parents would like to review any of our policies, we are always happy to provide them upon request.
+                </p>
+                <p>
+                  Our policies ensure that we maintain clear standards, transparency and strong partnerships with families, supporting the best possible care and learning experience for every child.
+                </p>
+              </div>
+              <div className="mt-8 relative z-10">
+                <Link href="/policies/download" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-nest-600 text-white font-semibold rounded-xl hover:bg-nest-700 transition-colors shadow-sm">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                  Request Full Policy Document
+                </Link>
+              </div>
             </div>
           </section>
 
-          <div className="mt-14 flex flex-wrap gap-4">
-            <Link href="/settling-in" className="inline-flex items-center justify-center px-6 py-3 bg-nest-600 text-white font-semibold rounded-xl hover:bg-nest-700 transition-colors">
+          <div className="mt-14 flex flex-wrap gap-4 pt-10 border-t border-slate-100">
+            <Link href="/settling-in" className="inline-flex items-center justify-center px-6 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl hover:bg-slate-200 transition-colors">
               Settling In
             </Link>
-            <Link href="/curriculum-framework" className="inline-flex items-center justify-center px-6 py-3 border-2 border-nest-600 text-nest-700 font-semibold rounded-xl hover:bg-nest-50 transition-colors">
-              Curriculum Framework
+            <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 border-2 border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-colors">
+              Contact Us
             </Link>
           </div>
         </div>

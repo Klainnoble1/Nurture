@@ -17,10 +17,10 @@ export default function GalleryPage() {
               Our spaces
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-slate-900 mb-4">
-              Outdoor learning environment
+              Our Learning Environments
             </h1>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              A glimpse of our garden: play structures, sensory areas, and spaces where children explore and grow.
+              A glimpse into our baby room, toddler room, preschool room, and beautiful garden area.
             </p>
           </div>
         </section>

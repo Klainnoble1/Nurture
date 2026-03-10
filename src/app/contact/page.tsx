@@ -1,113 +1,120 @@
 import PageLayout from '@/app/PageLayout';
+import Link from 'next/link';
 import Button from '@/components/Button';
-import Image from 'next/image';
 
 export const metadata = {
   title: 'Contact Us',
   description: 'Visit or get in touch with Nurture Nest Multilingual Nursery, central London SE1.',
 };
 
-const CONTACT_IMAGE = '/kidsplaying1.jpeg';
-
-const hours = [
-  { day: 'Mon', hours: '09:00 – 17:00' },
-  { day: 'Tue', hours: '09:00 – 17:00' },
-  { day: 'Wed', hours: '09:00 – 17:00' },
-  { day: 'Thu', hours: '09:00 – 17:00' },
-  { day: 'Fri', hours: '09:00 – 17:00' },
-  { day: 'Sat', hours: 'Closed' },
-  { day: 'Sun', hours: 'Closed' },
-];
-
 export default function ContactPage() {
+  const hours = [
+    { day: 'Monday', hours: '07:00 – 19:00' },
+    { day: 'Tuesday', hours: '07:00 – 19:00' },
+    { day: 'Wednesday', hours: '07:00 – 19:00' },
+    { day: 'Thursday', hours: '07:00 – 19:00' },
+    { day: 'Friday', hours: '07:00 – 19:00' },
+  ];
+
+  const socialLinks = [
+    { name: 'Instagram', icon: '📸', href: 'https://instagram.com/nurturenestmultilingualnursery' },
+    { name: 'Facebook', icon: '👤', href: 'https://facebook.com/nurturenestmultilingualnursery' },
+    { name: 'TikTok', icon: '🎵', href: 'https://tiktok.com/@nurturenestmultilingualnursery' },
+    { name: 'WhatsApp', icon: '💬', href: 'https://wa.me/442046421388' },
+  ];
+
   return (
     <PageLayout>
       <div className="bg-gradient-to-b from-nest-50 via-white to-warm-50 py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-4">Contact Us</h1>
-          <p className="text-xl text-slate-600 mb-12">Better yet, see us in person. We would love to meet you.</p>
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-slate-900 mb-6">Contact Us</h1>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              We&apos;re located in central London, offering a safe, inclusive environment for your child. Reach out to us using any of the methods below.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <div>
-              <div className="relative aspect-[3/2] rounded-2xl overflow-hidden shadow-soft ring-2 ring-nest-200/60 mb-8">
-                <Image src={CONTACT_IMAGE} alt="Parent and child at nursery" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <div className="bg-white p-10 rounded-3xl border border-slate-200 shadow-soft-lg space-y-10">
+              <div>
+                <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Our Details</h2>
+                <div className="space-y-4 text-slate-700 font-medium">
+                  <p className="flex items-center gap-3">
+                    <span className="text-2xl">📍</span> 
+                    <span>61 Great Dover Street, London, SE1</span>
+                  </p>
+                  <p className="flex items-center gap-3">
+                    <span className="text-2xl">📞</span> 
+                    <a href="tel:02046421388" className="hover:text-nest-600 transition-colors">0204 642 1388</a>
+                  </p>
+                  <p className="flex items-center gap-3">
+                    <span className="text-2xl">✉️</span> 
+                    <a href="mailto:admin@nurturenestmultilingualnursery.com" className="hover:text-nest-600 transition-colors">admin@nurturenestmultilingualnursery.com</a>
+                  </p>
+                </div>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-8">
-                We have the luxury of a very central location, with our nursery based in the heart of central London (SE1)—local to the Shard, Borough Market, South Bank, London Bridge and Tower Bridge, and just a few minutes walk from London Bridge tube station.
-              </p>
-              <div className="space-y-6">
-                <div>
-                  <h2 className="font-display font-bold text-slate-900 mb-2">Nurture Nest</h2>
-                  <p className="text-slate-600">61 Great Dover Street<br />London, UK</p>
+
+              <div>
+                <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Connect With Us</h2>
+                <div className="grid grid-cols-2 gap-4">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-nest-300 hover:bg-nest-50 transition-all group"
+                    >
+                      <span className="text-xl group-hover:scale-110 transition-transform">{social.icon}</span>
+                      <span className="font-bold text-slate-700 group-hover:text-nest-700">{social.name}</span>
+                    </a>
+                  ))}
                 </div>
-                <div>
-                  <p className="text-slate-600">
-                    <a href="tel:+447956176257" className="text-nest-600 font-medium hover:underline">+44 7956 176 257</a>
-                  </p>
-                </div>
-                <div>
-                  <p className="text-slate-600">
-                    Staff and parents: <a href="https://tapestryjournal.com/" target="_blank" rel="noopener noreferrer" className="text-nest-600 font-medium hover:underline">Log in to Tapestry</a>
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-display font-semibold text-slate-900 mb-4">Hours</h3>
-                  <table className="w-full text-slate-600">
-                    <tbody>
-                      {hours.map((row) => (
-                        <tr key={row.day}>
-                          <td className="py-1 pr-4">{row.day}</td>
-                          <td className="py-1">{row.hours}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+              </div>
+              
+              <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row gap-4">
+                <Button href="/enquiries" variant="primary" className="flex-1 justify-center rounded-xl bg-nest-500 hover:bg-nest-600 shadow-nest-lg">
+                  Send an Enquiry
+                </Button>
+                <Button href="?tour=true" variant="outline" className="flex-1 justify-center rounded-xl border-nest-200 text-nest-700 hover:bg-nest-50">
+                  Book a Tour
+                </Button>
+              </div>
+            </div>
+
+            <div className="bg-white p-10 rounded-3xl border border-slate-200 shadow-soft-lg flex flex-col">
+              <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Opening Hours</h2>
+              <div className="flex-1">
+                <table className="w-full text-slate-700 font-medium mb-8">
+                  <tbody>
+                    {hours.map((row) => (
+                      <tr key={row.day} className="border-b border-slate-50 last:border-0">
+                        <td className="py-4">{row.day}</td>
+                        <td className="py-4 text-right">{row.hours}</td>
+                      </tr>
+                    ))}
+                    <tr className="border-b border-slate-50 last:border-0">
+                      <td className="py-4 text-slate-400">Saturday & Sunday</td>
+                      <td className="py-4 text-right text-slate-400">Closed</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-auto">
                 <a
                   href="https://www.google.com/maps/search/61+Great+Dover+Street+London+SE1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-nest-600 text-white font-semibold rounded-xl hover:bg-nest-700 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors shadow-lg"
                 >
-                  Get directions
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  View on Google Maps
                 </a>
               </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-soft">
-              <h3 className="font-display font-bold text-slate-900 mb-6">Send a message</h3>
-              <form className="space-y-5">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-nest-500 focus:border-nest-500"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Email *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-nest-500 focus:border-nest-500"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Message</label>
-                  <textarea
-                    name="message"
-                    rows={5}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-nest-500 focus:border-nest-500 resize-none"
-                    placeholder="Your message..."
-                  />
-                </div>
-                <Button type="submit" variant="primary" className="w-full">Send</Button>
-              </form>
-              <p className="text-xs text-slate-500 mt-4">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
             </div>
           </div>
         </div>

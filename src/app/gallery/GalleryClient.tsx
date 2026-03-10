@@ -1,106 +1,140 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
-const GALLERY_FILES = [
-  'rs=w_719,h_959.webp',
-  'rs=w_719,h_959 (1).webp',
-  'rs=w_719,h_959 (2).webp',
-  'rs=w_719,h_959 (3).webp',
-  'rs=w_719,h_959 (4).webp',
-  'rs=w_719,h_959 (5).webp',
-  'rs=w_719,h_959 (6).webp',
-  'rs=w_719,h_959 (7).webp',
-  'rs=w_719,h_959 (8).webp',
-];
+const ROOM_CATEGORIES = [
+  { id: 'all', label: 'All Spaces' },
+  { id: 'baby-room', label: 'Baby Room' },
+  { id: 'toddler-room', label: 'Toddler Room' },
+  { id: 'preschool-room', label: 'Preschool Room' },
+  { id: 'garden', label: 'Garden Area' },
+] as const;
 
-const GALLERY_IMAGES = [
-  { alt: 'Outdoor play area with wooden gazebo and balance beams', caption: 'Learning dome & balance play' },
-  { alt: 'Tricycles and scooter on wood chips', caption: 'Wheeled play' },
-  { alt: 'Trampolines and tire obstacle course on green turf', caption: 'Active play area' },
-  { alt: 'Wooden hexagonal gazebo with bench seating', caption: 'Outdoor shelter' },
-  { alt: 'Wooden play structure on safety surface', caption: 'Climbing & play structure' },
-  { alt: 'Water play stations and sensory tubs', caption: 'Water & sensory play' },
-  { alt: 'Wooden play structure with target panels', caption: 'Play platform' },
-  { alt: 'Play tunnel, trampolines and tires', caption: 'Tunnel & trampolines' },
-  { alt: 'Outdoor seating and play equipment on turf', caption: 'Garden area' },
-];
-
-function getGallerySrc(filename: string) {
-  return `/gallery/${encodeURIComponent(filename)}`;
-}
+type RoomId = Exclude<(typeof ROOM_CATEGORIES)[number]['id'], 'all'>;
+type GalleryImage = { filename: string; room: RoomId; url: string; alt: string };
+type GalleryMap = Record<RoomId, GalleryImage[]>;
 
 export default function GalleryClient() {
+  const [activeTab, setActiveTab] = useState<(typeof ROOM_CATEGORIES)[number]['id']>('all');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [galleryImages, setGalleryImages] = useState<GalleryMap>({
+    'baby-room': [],
+    'toddler-room': [],
+    'preschool-room': [],
+    garden: [],
+  });
+  const [loading, setLoading] = useState(true);
+
+  const fetchGallery = useCallback(async () => {
+    try {
+      const res = await fetch('/api/gallery', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to fetch gallery');
+      const data = await res.json();
+      setGalleryImages(data.images ?? {});
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchGallery();
+  }, [fetchGallery]);
+
+  // Refresh when changing tabs so admin edits show quickly without full page reload.
+  useEffect(() => {
+    if (!loading) {
+      fetchGallery();
+    }
+  }, [activeTab, fetchGallery, loading]);
+
+  const allImages = useMemo(
+    () => [
+      ...(galleryImages['baby-room'] ?? []),
+      ...(galleryImages['toddler-room'] ?? []),
+      ...(galleryImages['preschool-room'] ?? []),
+      ...(galleryImages.garden ?? []),
+    ],
+    [galleryImages]
+  );
+
+  const filteredImages = useMemo(() => {
+    if (activeTab === 'all') return allImages;
+    return galleryImages[activeTab] ?? [];
+  }, [activeTab, allImages, galleryImages]);
 
   return (
     <>
       <section className="pb-20 md:pb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {GALLERY_FILES.map((filename, index) => {
-              const item = GALLERY_IMAGES[index] ?? { alt: 'Outdoor learning', caption: 'Our garden' };
-              const src = getGallerySrc(filename);
-              return (
-                <button
-                  key={filename}
-                  type="button"
-                  onClick={() => setLightboxIndex(index)}
-                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-200 border border-slate-200/80 shadow-soft hover:shadow-soft-lg hover:border-nest-200/80 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-nest-500 focus:ring-offset-2"
-                >
-                  <Image
-                    src={src}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <p className="text-white font-display font-semibold text-sm drop-shadow">{item.caption}</p>
-                  </div>
-                  <div data-placeholder className="absolute inset-0 hidden items-center justify-center bg-nest-100 text-nest-600 text-sm font-medium">
-                    {item.caption}
-                  </div>
-                </button>
-              );
-            })}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {ROOM_CATEGORIES.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveTab(category.id)}
+                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                  activeTab === category.id
+                    ? 'bg-nest-600 text-white shadow-md'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:border-nest-300'
+                }`}
+              >
+                {category.label}
+              </button>
+            ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-nest-600 text-nest-700 font-semibold rounded-xl hover:bg-nest-50 transition-colors"
-            >
-              Back to home
-            </Link>
-          </div>
+          {loading ? (
+            <div className="text-center py-20 text-slate-400">
+              <div className="w-8 h-8 border-4 border-nest-400 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+              Loading gallery...
+            </div>
+          ) : filteredImages.length === 0 ? (
+            <div className="text-center py-20 text-slate-400 border-2 border-dashed border-slate-200 rounded-2xl bg-white">
+              No images available in this section yet.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              {filteredImages.map((item) => (
+                <button
+                  key={`${item.room}-${item.filename}`}
+                  type="button"
+                  onClick={() => setLightboxIndex(allImages.findIndex((img) => img.url === item.url))}
+                  className="group relative aspect-square rounded-2xl overflow-hidden bg-slate-200 border border-slate-200/80 shadow-soft hover:shadow-lg hover:border-nest-200/80 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-nest-500 focus:ring-offset-2"
+                >
+                  <Image
+                    src={item.url}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {lightboxIndex !== null && (
+      {lightboxIndex !== null && allImages[lightboxIndex] && (
         <button
           type="button"
           onClick={() => setLightboxIndex(null)}
           className="fixed inset-0 z-50 bg-slate-900/95 flex items-center justify-center p-4 focus:outline-none"
           aria-label="Close lightbox"
         >
-          <div className="relative max-w-5xl w-full max-h-[90vh] aspect-[4/3]" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-5xl w-full max-h-[90vh] aspect-[4/3] flex flex-col" onClick={(e) => e.stopPropagation()}>
             <Image
-              src={getGallerySrc(GALLERY_FILES[lightboxIndex])}
-              alt={GALLERY_IMAGES[lightboxIndex]?.alt ?? 'Gallery'}
+              src={allImages[lightboxIndex].url}
+              alt={allImages[lightboxIndex].alt}
               fill
               className="object-contain rounded-xl"
               sizes="90vw"
             />
-            <p className="text-white text-center mt-4 font-display font-semibold">
-              {GALLERY_IMAGES[lightboxIndex]?.caption ?? 'Outdoor learning'}
-            </p>
           </div>
         </button>
       )}
     </>
   );
 }
+

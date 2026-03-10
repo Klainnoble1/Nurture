@@ -14,14 +14,20 @@ export default function StaffPage() {
           <span className="inline-block px-3 py-1.5 bg-nest-200 text-nest-800 rounded-lg text-sm font-semibold mb-6">Our Community</span>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">Our Staff</h1>
           <p className="text-xl text-slate-600 mb-10">A dedicated, qualified team who put children at the heart of everything we do.</p>
-          <section className="space-y-6 text-slate-600 leading-relaxed">
-            <p>Our educators are experienced in early years practice, multilingual development, and inclusive education. We maintain high staff-to-child ratios and support continuous professional development so our team can offer the best for every child.</p>
-            <p><strong>Staff log in:</strong> Our team uses Tapestry for learning journals and day-to-day management. <a href="https://tapestryjournal.com/" target="_blank" rel="noopener noreferrer" className="text-nest-600 font-medium hover:underline">Log in to Tapestry</a>.</p>
-            <p>Want to join us? See our <Link href="/careers" className="text-nest-600 font-medium hover:underline">Join Our Team</Link> page for current vacancies.</p>
+          <section className="space-y-6 text-slate-600 leading-relaxed bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+            <h2 className="text-2xl font-display font-bold text-slate-900 mb-4">Careers at Nurture Nest</h2>
+            <p className="text-lg">
+              We hire staff who care and are compassionate, qualified and do their best to ensure children feel like nursery is a home away from home!
+            </p>
+            <p>
+              At our nursery, we are proud to have a team of highly qualified, caring and passionate professionals who are dedicated to supporting children in their early years of development.
+            </p>
+            <div className="mt-8">
+              <Link href="/careers" className="inline-flex items-center justify-center px-6 py-3 bg-nest-600 text-white font-semibold rounded-xl hover:bg-nest-700 transition-colors shadow-sm">
+                Join our team
+              </Link>
+            </div>
           </section>
-          <div className="mt-14">
-            <Link href="/careers" className="inline-flex items-center justify-center px-6 py-3 bg-nest-600 text-white font-semibold rounded-xl hover:bg-nest-700 transition-colors">Join our team</Link>
-          </div>
         </div>
       </div>
     </PageLayout>
