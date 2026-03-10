@@ -58,7 +58,7 @@ export default function ApproachSection() {
               <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-60 bg-white/40 transition-transform duration-700 group-hover:scale-150" />
 
               <div className="relative z-10">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-sm ring-1 ring-white/60 text-4xl transform group-hover:rotate-12 transition-transform ${item.chip}`}>
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-sm ring-1 ring-white/60 text-4xl transform group-hover:rotate-12 transition-transform ${item.iconBg}`}>
                   {item.icon}
                 </div>
 
