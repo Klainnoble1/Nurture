@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Button from '@/components/Button';
 
-const ABOUT_IMAGE = '/gallery/garden/21.jpeg';
+const ABOUT_IMAGE = '/gallery/home/about-21.jpg';
 
 export default function AboutSection() {
   return (
@@ -48,6 +48,8 @@ export default function AboutSection() {
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
+                priority
               />
             </div>
 

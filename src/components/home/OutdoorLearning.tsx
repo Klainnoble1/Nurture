@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Button from '@/components/Button';
 
-const OUTDOOR_IMAGE = '/gallery/preschool-room/16.jpeg';
+const OUTDOOR_IMAGE = '/gallery/home/outdoor-16.jpg';
 
 export default function OutdoorLearning() {
   const features = [
@@ -40,6 +40,7 @@ export default function OutdoorLearning() {
                 fill
                 className="object-cover hover:scale-110 transition-transform duration-1000"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                quality={68}
               />
             </div>
 

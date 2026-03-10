@@ -149,62 +149,65 @@ export default function Header() {
               </svg>
             </button>
           </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="fixed inset-0 top-[72px] z-[60] md:hidden">
-              <div className="absolute inset-0 bg-white/95 backdrop-blur-xl animate-fade-in" />
-              <nav className="relative h-full overflow-y-auto px-6 py-10 space-y-8 animate-slide-up">
-                {navItems.map((item) => (
-                  <div key={item.label} className="space-y-4">
-                    {item.href ? (
-                      <Link
-                        href={item.href}
-                        className="block text-2xl font-display font-bold text-slate-900 border-b border-slate-100 pb-2"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <div className="space-y-4">
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] font-display">
-                          {item.label}
-                        </p>
-                        <div className="grid grid-cols-1 gap-4">
-                          {item.submenu?.map((subitem) => (
-                            subitem.external ? (
-                              <a
-                                key={subitem.label}
-                                href={subitem.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-lg font-bold text-slate-700 hover:text-nest-600"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                {subitem.label}
-                              </a>
-                            ) : (
-                              <Link
-                                key={subitem.label}
-                                href={subitem.href}
-                                scroll={subitem.scroll}
-                                className="text-lg font-bold text-slate-700 hover:text-nest-600"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                {subitem.label}
-                              </Link>
-                            )
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </nav>
-            </div>
-          )}
-        </div>
+        </div> {/* Added missing closing div for max-w-7xl */}
       </header>
+
+      {/* Mobile Menu - Moved outside header to avoid sticky/fixed conflicts */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 top-[72px] z-[60] md:hidden">
+          <div 
+            className="absolute inset-0 bg-white/95 backdrop-blur-xl animate-fade-in" 
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <nav className="relative h-full overflow-y-auto px-6 py-10 space-y-8 animate-slide-up bg-white">
+            {navItems.map((item) => (
+              <div key={item.label} className="space-y-4">
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className="block text-2xl font-display font-bold text-slate-900 border-b border-slate-100 pb-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <div className="space-y-4">
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] font-display">
+                      {item.label}
+                    </p>
+                    <div className="grid grid-cols-1 gap-4">
+                      {item.submenu?.map((subitem) => (
+                        subitem.external ? (
+                          <a
+                            key={subitem.label}
+                            href={subitem.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-lg font-bold text-slate-700 hover:text-nest-600"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {subitem.label}
+                          </a>
+                        ) : (
+                          <Link
+                            key={subitem.label}
+                            href={subitem.href}
+                            scroll={subitem.scroll}
+                            className="text-lg font-bold text-slate-700 hover:text-nest-600"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {subitem.label}
+                          </Link>
+                        )
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+        </div>
+      )}
 
       {/* Render Tour PopOut safely inside Suspense because it uses useSearchParams() */}
       <Suspense fallback={null}>

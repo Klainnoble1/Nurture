@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-const FAMILIES_STRIP_1 = '/gallery/toddler-room/10.jpeg';
-const FAMILIES_STRIP_2 = '/gallery/baby-room/18.jpeg';
-const FAMILIES_STRIP_3 = '/gallery/garden/25.jpeg';
+const FAMILIES_STRIP_1 = '/gallery/home/family-10.jpg';
+const FAMILIES_STRIP_2 = '/gallery/home/family-18.jpg';
+const FAMILIES_STRIP_3 = '/gallery/home/family-25.jpg';
 
 export default function FamilyStrip() {
   const images = [
@@ -38,7 +38,8 @@ export default function FamilyStrip() {
                 alt={img.alt} 
                 fill 
                 className="object-cover" 
-                sizes="(max-width: 640px) 100vw, 33vw" 
+                sizes="(max-width: 640px) 100vw, 33vw"
+                quality={65}
               />
             </div>
           ))}
