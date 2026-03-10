@@ -10,7 +10,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Admin password not configured' }, { status: 500 });
     }
 
-    if (password !== adminPassword) {
+    if (password?.trim() !== adminPassword.trim()) {
       return NextResponse.json({ error: 'Invalid password' }, { status: 401 });
     }
 
