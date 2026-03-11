@@ -8,17 +8,36 @@ export default function CookieBanner() {
 
   useEffect(() => {
     const consent = localStorage.getItem('cookies_accepted');
-    if (!consent) {
+    const timestamp = localStorage.getItem('cookies_consent_timestamp');
+    
+    if (consent && timestamp) {
+      const now = new Date().getTime();
+      const oneDay = 24 * 60 * 60 * 1000;
+      
+      if (now - parseInt(timestamp) > oneDay) {
+        // Expired, clear and show banner
+        localStorage.removeItem('cookies_accepted');
+        localStorage.removeItem('cookies_consent_timestamp');
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    } else {
       setIsVisible(true);
     }
   }, []);
 
   const acceptCookies = () => {
+    const now = new Date().getTime().toString();
     localStorage.setItem('cookies_accepted', 'true');
+    localStorage.setItem('cookies_consent_timestamp', now);
     setIsVisible(false);
   };
 
   const declineCookies = () => {
+    const now = new Date().getTime().toString();
+    localStorage.setItem('cookies_accepted', 'false');
+    localStorage.setItem('cookies_consent_timestamp', now);
     setIsVisible(false);
   };
 

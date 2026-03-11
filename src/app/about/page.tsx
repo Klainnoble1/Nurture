@@ -40,7 +40,7 @@ export default function AboutPage() {
 
             <section>
               <img
-                src="/kidsplaying1.jpeg"
+                src="/Nurture nest/WhatsApp Image 2026-03-07 at 10.34.08 (2).jpeg"
                 alt="Happy child at nursery"
                 className="w-full h-auto rounded-3xl border border-slate-100"
               />

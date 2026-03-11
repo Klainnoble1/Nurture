@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Button from '@/components/Button';
 
-const LOGO = '/logo-removebg-preview.png';
+const LOGO = '/nuturelogo.png';
 
 export default function HeroSection() {
   return (
