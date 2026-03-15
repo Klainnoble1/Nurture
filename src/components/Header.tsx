@@ -70,10 +70,10 @@ export default function Header() {
           <div className="flex justify-between items-center h-18 md:h-20">
             <Link href="/" className="flex items-center gap-3 group">
               <div className="w-12 h-12 flex items-center justify-center transition-all group-hover:scale-105">
-                <img src="/logo.jpeg" alt="Nurture Nest Logo" className="w-full h-full object-contain rounded-xl" />
+                <img src="/logo.jpeg" alt="The Notchernest Logo" className="w-full h-full object-contain rounded-xl" />
               </div>
               <span className="font-display text-xl md:text-2xl font-bold tracking-tight transition-colors text-slate-800 group-hover:text-nest-600">
-                Nurture Nest
+                The Notchernest
               </span>
             </Link>
 

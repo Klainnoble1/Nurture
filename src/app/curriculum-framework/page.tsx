@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Our Curriculum',
-  description: 'Our curriculum at Nurture Nest is designed around the seven areas of learning, promoting British Values and a child-led approach.',
+  description: 'Our curriculum at The Notchernest is designed around the seven areas of learning, promoting British Values and a child-led approach.',
 };
 
 export default function CurriculumFrameworkPage() {
@@ -17,7 +17,7 @@ export default function CurriculumFrameworkPage() {
             Our Curriculum
           </h1>
           <p className="text-xl text-slate-600 mb-10 font-semibold">
-            Birth – 5 Matters: <a href="/Birthto5Matters-download.pdf" target="_blank" className="text-nest-600 hover:underline">Download Birthto5Matters.pdf</a>
+            Birth – 5 Matters: <a href="https://birthto5matters.org.uk/wp-content/uploads/2021/04/Birthto5Matters-download.pdf" target="_blank" className="text-nest-600 hover:underline">Download Birthto5Matters.pdf</a>
           </p>
           
           <section className="space-y-12">

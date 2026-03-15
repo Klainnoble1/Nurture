@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Our Staff',
-  description: 'Meet the team at Nurture Nest Multilingual Nursery.',
+  description: 'Meet the team at The Notchernest Multilingual Nursery.',
 };
 
 export default function StaffPage() {
@@ -15,7 +15,7 @@ export default function StaffPage() {
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">Our Staff</h1>
           <p className="text-xl text-slate-600 mb-10">A dedicated, qualified team who put children at the heart of everything we do.</p>
           <section className="space-y-6 text-slate-600 leading-relaxed bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-            <h2 className="text-2xl font-display font-bold text-slate-900 mb-4">Careers at Nurture Nest</h2>
+            <h2 className="text-2xl font-display font-bold text-slate-900 mb-4">Careers at The Notchernest</h2>
             <p className="text-lg">
               We hire staff who care and are compassionate, qualified and do their best to ensure children feel like nursery is a home away from home!
             </p>

@@ -3,11 +3,11 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Our Policies & FAQs',
-  description: 'Policies, procedures, and frequently asked questions at Nurture Nest.',
+  description: 'Policies, procedures, and frequently asked questions at The Notchernest.',
 };
 
 const faqs = [
-  { q: 'What are your opening hours?', a: 'We are open Monday to Friday, 09:00 – 17:00. We are closed on weekends and bank holidays.' },
+  { q: 'What are your opening hours?', a: 'We are open Monday to Friday, 07:00 – 19:00. We are closed on weekends and bank holidays.' },
   { q: 'Where are you located?', a: 'We are at 61 Great Dover Street, London SE1—minutes from London Bridge station, the Shard, Borough Market, South Bank, and Tower Bridge.' },
   { q: 'Do you follow the EYFS?', a: 'Yes. Our curriculum is aligned with the Early Years Foundation Stage and we use recognised frameworks and theories to support each child\'s development.' },
   { q: 'How can I register my child?', a: 'Registration for 2026 is open. Please visit our Registration page or contact us to request a place and arrange a visit.' },
@@ -25,7 +25,7 @@ export default function PoliciesPage() {
             Our Policies & FAQs
           </h1>
           <p className="text-xl text-slate-600 mb-10">
-            Key policies and answers to common questions about Nurture Nest.
+            Key policies and answers to common questions about The Notchernest.
           </p>
 
           <section className="space-y-10">

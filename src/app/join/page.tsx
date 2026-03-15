@@ -82,7 +82,7 @@ export default function JoinNurseryPage() {
               </div>
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-slate-900">Application Received!</h2>
               <p className="text-slate-600 max-w-lg mx-auto text-lg leading-relaxed">
-                Thank you for choosing Nurture Nest. We have received your application and our team will be in touch with you shortly to discuss the next steps.
+                Thank you for choosing The Notchernest. We have received your application and our team will be in touch with you shortly to discuss the next steps.
               </p>
               <button 
                 onClick={() => setSubmitStatus('idle')}
@@ -235,7 +235,7 @@ export default function JoinNurseryPage() {
                   )}
                 </button>
                 <p className="mt-6 text-sm text-slate-500 flex items-center gap-2 text-center max-w-sm">
-                  <span>🔒</span> Your information is secure and will only be used by Nurture Nest for admissions.
+                  <span>🔒</span> Your information is secure and will only be used by The Notchernest for admissions.
                 </p>
               </div>
             </form>

@@ -3,7 +3,7 @@ import Button from '@/components/Button';
 
 export const metadata = {
   title: 'Join Our Team | Careers',
-  description: 'Careers, vacancies, and opportunities at Nurture Nest Multilingual Nursery.',
+  description: 'Careers, vacancies, and opportunities at The Notchernest Multilingual Nursery.',
 };
 
 export default function CareersPage() {
@@ -21,7 +21,7 @@ export default function CareersPage() {
     {
       icon: '🛡️',
       title: 'Safeguarding Commitment',
-      description: 'Nurture Nest is committed to safeguarding and promoting the welfare of children. All successful applicants will be subject to an enhanced DBS check and rigorous safer recruitment procedures.',
+      description: 'The Notchernest is committed to safeguarding and promoting the welfare of children. All successful applicants will be subject to an enhanced DBS check and rigorous safer recruitment procedures.',
     },
   ];
 
@@ -35,7 +35,7 @@ export default function CareersPage() {
               Join Our Team
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-slate-900 leading-tight">
-              Build your career with <span className="text-nest-600">Nurture Nest</span>
+              Build your career with <span className="text-nest-600">The Notchernest</span>
             </h1>
           </div>
 

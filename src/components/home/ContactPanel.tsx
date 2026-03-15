@@ -4,20 +4,27 @@ import ContactForm from './ContactForm';
 const contactItems = [
   {
     label: 'Location',
-    value: '61 Great Dover Street, London, SE1',
+    value: '61 Great Dover Street, London, SE1 4YF',
     emoji: '📍',
     bg: 'bg-slate-50',
   },
   {
     label: 'Phone',
-    value: '+44 7956 176 257',
+    value: '0204 642 1388',
     emoji: '📞',
-    href: 'tel:+447956176257',
+    href: 'tel:02046421388',
+    bg: 'bg-slate-50',
+  },
+  {
+    label: 'Email',
+    value: 'admin@nurturenestmultilingualnursery.com',
+    emoji: '✉️',
+    href: 'mailto:admin@nurturenestmultilingualnursery.com',
     bg: 'bg-slate-50',
   },
   {
     label: 'Hours',
-    value: 'Mon-Fri: 09:00-17:00',
+    value: 'Mon-Fri: 07:00-19:00',
     emoji: '⏰',
     bg: 'bg-slate-50',
   },

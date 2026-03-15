@@ -4,8 +4,8 @@ import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Nurture Nest | Multilingual Nursery in London',
-    template: '%s | Nurture Nest',
+    default: 'The Notchernest | Multilingual Nursery in London',
+    template: '%s | The Notchernest',
   },
   description:
     'A multilingual, inclusive nursery rooted in British values. Providing early childhood education in central London.',
@@ -18,25 +18,25 @@ export const metadata: Metadata = {
     'London',
     'SE1',
   ],
-  authors: [{ name: 'Nurture Nest' }],
-  creator: 'Nurture Nest',
+  authors: [{ name: 'The Notchernest' }],
+  creator: 'The Notchernest',
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://thenurture-nest.co.uk',
-    siteName: 'Nurture Nest',
+    url: 'https://thenotchernest.co.uk',
+    siteName: 'The Notchernest',
     images: [
       {
-        url: 'https://thenurture-nest.co.uk/og-image.jpg',
+        url: 'https://thenotchernest.co.uk/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Nurture Nest Nursery',
+        alt: 'The Notchernest Nursery',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nurture Nest | Multilingual Nursery',
+    title: 'The Notchernest | Multilingual Nursery',
     description: 'Inclusive early childhood education in central London',
   },
   robots: {

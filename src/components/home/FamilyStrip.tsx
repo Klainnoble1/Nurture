@@ -22,7 +22,7 @@ export default function FamilyStrip() {
             Happy families, happy <span className="text-joy-500 underline decoration-joy-200 decoration-8 underline-offset-8">little ones</span>
           </h2>
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
-            Families from all backgrounds trust Nurture Nest to provide a loving and safe start for their children.
+            Families from all backgrounds trust The Notchernest to provide a loving and safe start for their children.
           </p>
         </div>
 

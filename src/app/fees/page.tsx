@@ -2,8 +2,8 @@ import Link from 'next/link';
 import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
-  title: 'School Fees',
-  description: 'Fees and funding information for Nurture Nest Multilingual Nursery.',
+  title: 'Nursery Fees',
+  description: 'Fees and funding information for The Notchernest Multilingual Nursery.',
 };
 
 export default function FeesPage() {
@@ -12,7 +12,7 @@ export default function FeesPage() {
       <div className="bg-slate-50 py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="inline-block px-3 py-1.5 bg-nest-100 text-nest-700 rounded-lg text-sm font-semibold mb-6">Admissions</span>
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">School Fees</h1>
+          <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">Nursery Fees</h1>
           <p className="text-xl text-slate-600 mb-10">We aim to provide high-quality childcare with flexible options for families while maintaining a consistent routine.</p>
           
           <section className="space-y-12">
@@ -45,7 +45,7 @@ export default function FeesPage() {
                 <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
                   <h3 className="text-xl font-display font-bold text-slate-900 mb-2">Opening Hours</h3>
                   <p className="text-slate-600 font-medium mb-1">Monday to Friday</p>
-                  <p className="text-nest-600 font-bold text-2xl mb-4">7:00<span className="text-sm">am</span> – 7:00<span className="text-sm">pm</span></p>
+                  <p className="text-nest-600 font-bold text-2xl mb-4">07:00 – 19:00</p>
                   <p className="text-slate-500 text-sm">The nursery operates all year round, providing consistent care and support for families.</p>
                 </div>
               </div>

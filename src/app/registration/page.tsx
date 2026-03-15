@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 
 export const metadata = {
   title: 'Registration',
-  description: 'Register your child at Nurture Nest Multilingual Nursery. Registration for 2026 now open.',
+  description: 'Register your child at The Notchernest Multilingual Nursery. Registration for 2026 now open.',
 };
 
 export default function RegistrationPage() {
@@ -16,7 +16,7 @@ export default function RegistrationPage() {
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">Registration</h1>
           <div className="bg-nest-600 text-white p-6 md:p-8 rounded-2xl mb-10">
             <h2 className="text-2xl font-display font-bold mb-2">Registration for 2026 now open</h2>
-            <p className="text-nest-100">Secure a place for your child. Give them the gift of an inclusive, nurturing start at Nurture Nest.</p>
+            <p className="text-nest-100">Secure a place for your child. Give them the gift of an inclusive, nurturing start at The Notchernest.</p>
           </div>
           <section className="space-y-6 text-slate-600 leading-relaxed">
             <p>We welcome families who share our values of inclusion, multilingualism, and child-centred learning. To register your interest or secure a place:</p>

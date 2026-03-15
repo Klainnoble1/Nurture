@@ -40,10 +40,10 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center mx-auto mb-4 overflow-hidden border-2 border-nest-100">
-            <Image src="/logo-removebg-preview.png" alt="Nurture Nest" width={60} height={60} className="object-contain" />
+            <Image src="/logo-removebg-preview.png" alt="The Notchernest" width={60} height={60} className="object-contain" />
           </div>
           <h1 className="text-3xl font-display font-bold text-slate-900">Admin Panel</h1>
-          <p className="text-slate-500 mt-1">Nurture Nest Management Area</p>
+          <p className="text-slate-500 mt-1">The Notchernest Management Area</p>
         </div>
 
         <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8">
@@ -81,7 +81,7 @@ export default function AdminLoginPage() {
         </div>
 
         <p className="text-center text-xs text-slate-400 mt-6">
-          Protected admin area · Nurture Nest Multilingual Nursery
+          Protected admin area · The Notchernest Multilingual Nursery
         </p>
       </div>
     </div>

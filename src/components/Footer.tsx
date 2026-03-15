@@ -10,7 +10,7 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-          <p className="text-white">&copy; {currentYear} Nurture Nest Nursery. All rights reserved.</p>
+          <p className="text-white">&copy; {currentYear} The Notchernest Nursery. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy

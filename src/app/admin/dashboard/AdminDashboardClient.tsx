@@ -134,7 +134,7 @@ export default function AdminDashboardClient() {
               <Image src="/logo-removebg-preview.png" alt="Logo" width={32} height={32} className="object-contain" />
             </div>
             <div>
-              <h1 className="text-lg font-display font-bold text-slate-900 leading-none">Nurture Nest</h1>
+              <h1 className="text-lg font-display font-bold text-slate-900 leading-none">The Notchernest</h1>
               <p className="text-xs text-slate-400">Admin Dashboard</p>
             </div>
           </div>

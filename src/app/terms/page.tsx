@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Terms of Service',
-  description: 'Terms of service for Nurture Nest Multilingual Nursery.',
+  description: 'Terms of service for The Notchernest Multilingual Nursery.',
 };
 
 export default function TermsPage() {
@@ -15,7 +15,7 @@ export default function TermsPage() {
           <p className="text-slate-600 mb-10">By using our website and services you agree to these terms.</p>
           <section className="prose prose-slate max-w-none space-y-6 text-slate-600">
             <h2 className="text-xl font-display font-bold text-slate-900">Use of website</h2>
-            <p>This website is for information about Nurture Nest Multilingual Nursery. You may use it for lawful purposes only and must not misuse or attempt to gain unauthorised access to our systems or data.</p>
+            <p>This website is for information about The Notchernest Multilingual Nursery. You may use it for lawful purposes only and must not misuse or attempt to gain unauthorised access to our systems or data.</p>
             <h2 className="text-xl font-display font-bold text-slate-900">Services</h2>
             <p>Nursery places and services are subject to availability and our registration and fee terms, which will be provided when you register.</p>
             <h2 className="text-xl font-display font-bold text-slate-900">Limitation of liability</h2>

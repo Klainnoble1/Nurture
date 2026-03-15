@@ -3,15 +3,15 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Term Dates & Hours',
-  description: 'Term dates and opening hours for Nurture Nest Multilingual Nursery.',
+  description: 'Term dates and opening hours for The Notchernest Multilingual Nursery.',
 };
 
 const hours = [
-  { day: 'Mon', hours: '09:00 – 17:00' },
-  { day: 'Tue', hours: '09:00 – 17:00' },
-  { day: 'Wed', hours: '09:00 – 17:00' },
-  { day: 'Thu', hours: '09:00 – 17:00' },
-  { day: 'Fri', hours: '09:00 – 17:00' },
+  { day: 'Mon', hours: '07:00 – 19:00' },
+  { day: 'Tue', hours: '07:00 – 19:00' },
+  { day: 'Wed', hours: '07:00 – 19:00' },
+  { day: 'Thu', hours: '07:00 – 19:00' },
+  { day: 'Fri', hours: '07:00 – 19:00' },
   { day: 'Sat', hours: 'Closed' },
   { day: 'Sun', hours: 'Closed' },
 ];

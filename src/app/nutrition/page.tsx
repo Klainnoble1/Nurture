@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Our Nutrition',
-  description: 'Healthy eating and nutrition at Nurture Nest Multilingual Nursery.',
+  description: 'Healthy eating and nutrition at The Notchernest Multilingual Nursery.',
 };
 
 export default function NutritionPage() {

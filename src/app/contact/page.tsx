@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 
 export const metadata = {
   title: 'Contact Us',
-  description: 'Visit or get in touch with Nurture Nest Multilingual Nursery, central London SE1.',
+  description: 'Visit or get in touch with The Notchernest Multilingual Nursery, central London SE1.',
 };
 
 export default function ContactPage() {
@@ -41,7 +41,7 @@ export default function ContactPage() {
                 <div className="space-y-4 text-slate-700 font-medium">
                   <p className="flex items-center gap-3">
                     <span className="text-2xl">📍</span> 
-                    <span>61 Great Dover Street, London, SE1</span>
+                    <span>61 Great Dover Street, London, SE1 4YF</span>
                   </p>
                   <p className="flex items-center gap-3">
                     <span className="text-2xl">📞</span> 
@@ -103,7 +103,7 @@ export default function ContactPage() {
 
               <div className="mt-auto">
                 <a
-                  href="https://www.google.com/maps/search/61+Great+Dover+Street+London+SE1"
+                  href="https://www.google.com/maps/search/61+Great+Dover+Street+London+SE1+4YF"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors shadow-lg"

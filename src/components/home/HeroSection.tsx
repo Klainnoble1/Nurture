@@ -18,7 +18,7 @@ export default function HeroSection() {
       <div className="relative z-20 max-w-3xl mx-auto px-6 sm:px-8 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white font-semibold text-sm mb-8 shadow-lg">
           <span className="text-joy-300">🌟</span>
-          <span>Welcome to Nurture Nest Multilingual Nursery</span>
+          <span>Welcome to The Notchernest Multilingual Nursery</span>
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-[1.08] tracking-tight mb-6 drop-shadow-lg">

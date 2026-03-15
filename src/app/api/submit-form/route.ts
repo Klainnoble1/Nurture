@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder');
 const DEFAULT_TO_EMAIL = 'admin@nurturenestmultilingualnursery.com';
-const DEFAULT_FROM_EMAIL = 'Nurture Nest Website <onboarding@resend.dev>';
+const DEFAULT_FROM_EMAIL = 'The Notchernest Website <onboarding@resend.dev>';
 
 export async function POST(req: Request) {
   try {

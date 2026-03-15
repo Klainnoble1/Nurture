@@ -3,7 +3,7 @@ import { isAdminAuthenticated } from '@/lib/adminAuth';
 import AdminDashboardClient from './AdminDashboardClient';
 
 export const metadata = {
-  title: 'Admin Dashboard | Nurture Nest',
+  title: 'Admin Dashboard | The Notchernest',
 };
 
 export default async function AdminDashboardPage() {

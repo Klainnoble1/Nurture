@@ -4,7 +4,7 @@ import GalleryClient from './GalleryClient';
 
 export const metadata = {
   title: 'Gallery',
-  description: 'Our outdoor learning environment: play structures, sensory areas, and garden spaces at Nurture Nest.',
+  description: 'Our outdoor learning environment: play structures, sensory areas, and garden spaces at The Notchernest.',
 };
 
 export default function GalleryPage() {
