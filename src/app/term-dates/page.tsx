@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Term Dates & Hours',
-  description: 'Term dates and opening hours for The Notchernest Multilingual Nursery.',
+  description: 'Term dates and opening hours for The Nurture Nest Multilingual Nursery.',
 };
 
 const hours = [

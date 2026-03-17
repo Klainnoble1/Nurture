@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Settling In',
-  description: 'How we help your child settle into The Notchernest Multilingual Nursery.',
+  description: 'How we help your child settle into The Nurture Nest Multilingual Nursery.',
 };
 
 export default function SettlingInPage() {

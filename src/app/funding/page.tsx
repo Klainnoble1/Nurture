@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 
 export const metadata = {
   title: 'Funding and Childcare Support',
-  description: 'Explore the government funding schemes and childcare support options available at The Notchernest.',
+  description: 'Explore the government funding schemes and childcare support options available at The Nurture Nest.',
 };
 
 export default function FundingPage() {

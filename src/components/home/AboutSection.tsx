@@ -13,7 +13,7 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div className="space-y-7 animate-slide-up">
             <span className="inline-block px-4 py-1.5 bg-nest-100 text-nest-700 rounded-full text-sm font-bold tracking-wide">
-              ABOUT THE NOTCHERNEST
+              ABOUT THE NURTURE NEST
             </span>
 
             <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 leading-tight">
@@ -22,7 +22,7 @@ export default function AboutSection() {
 
             <div className="space-y-5 text-slate-600 text-lg leading-relaxed max-w-xl">
               <p>
-                At The Notchernest, we provide a warm and safe learning environment where children feel welcomed and inspired every day.
+                At The Nurture Nest, we provide a warm and safe learning environment where children feel welcomed and inspired every day.
               </p>
               <p>
                 We nurture confidence, kindness, curiosity and resilience, while celebrating every child&apos;s culture, language and strengths.

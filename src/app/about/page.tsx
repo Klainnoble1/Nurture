@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'About',
-  description: 'The Notchernest Multilingual Nursery.',
+  description: 'The Nurture Nest Multilingual Nursery.',
 };
 
 export default function AboutPage() {
@@ -16,7 +16,7 @@ export default function AboutPage() {
           </div>
 
           <h1 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-4">
-            About The Notchernest
+            About The Nurture Nest
           </h1>
 
           <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-3xl">
@@ -30,7 +30,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-lg leading-relaxed">
                 <p>
-                  At The Notchernest Multilingual Nursery, we believe every child is unique, capable, and full of potential. Our curriculum is designed to nurture confident, curious, kind, and resilient learners through a rich, inclusive, and culturally responsive environment.
+                  At The Nurture Nest Multilingual Nursery, we believe every child is unique, capable, and full of potential. Our curriculum is designed to nurture confident, curious, kind, and resilient learners through a rich, inclusive, and culturally responsive environment.
                 </p>
                 <p className="font-medium text-slate-900">
                   We celebrate diversity, promote equality, and ensure every child feels valued, respected, and empowered to succeed.
@@ -55,7 +55,7 @@ export default function AboutPage() {
                   Our approach is child-centred, strength-based, inclusive, multilingual, and community connected. We employ different learning frameworks, theories, tools and models, including the EYFS, Jean Piaget, and Lev Vygotsky, to guide educators in developing an enabling environment that supports all areas of a child&apos;s growth: cognitive, social, and emotional development.
                 </p>
                 <p>
-                  Lev Vygotsky&apos;s Sociocultural Theory posits that social interaction, culture, and language are fundamental to cognitive development. He argued that children learn through guided social interactions. We put this into practice every day at The Notchernest.
+                  Lev Vygotsky&apos;s Sociocultural Theory posits that social interaction, culture, and language are fundamental to cognitive development. He argued that children learn through guided social interactions. We put this into practice every day at The Nurture Nest.
                 </p>
               </div>
             </section>

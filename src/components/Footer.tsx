@@ -10,17 +10,30 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-          <p className="text-white">&copy; {currentYear} The Notchernest Nursery. All rights reserved.</p>
-          <div className="flex gap-8">
+          <p className="text-white">&copy; {currentYear} The Nurture Nest Nursery. All rights reserved.</p>
+          <div className="flex gap-8 items-center">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
             <Link href="/terms" className="hover:text-white transition-colors">
               Terms of Service
             </Link>
-            <Link href="/privacy-policy#cookies" className="hover:text-white transition-colors">
-              Cookie settings
-            </Link>
+            <a 
+              href="https://www.tiktok.com/@nurturenestmultil?_r=1&_t=ZN-94lWpdLvziI" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors flex items-center gap-1"
+            >
+              TikTok
+            </a>
+            <a 
+              href="https://web.facebook.com/people/Nurture-Nest/pfbid02pinp2dr9nJpZfsySf5CForAPHFjMrzA9YdUiAJ5E8eayJssM5doqf1sRrzHkfx96l/?mibextid" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors flex items-center gap-1"
+            >
+              Facebook
+            </a>
           </div>
         </div>
       </div>

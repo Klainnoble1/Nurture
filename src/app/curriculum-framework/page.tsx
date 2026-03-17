@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Our Curriculum',
-  description: 'Our curriculum at The Notchernest is designed around the seven areas of learning, promoting British Values and a child-led approach.',
+  description: 'Our curriculum at The Nurture Nest is designed around the seven areas of learning, promoting British Values and a child-led approach.',
 };
 
 export default function CurriculumFrameworkPage() {

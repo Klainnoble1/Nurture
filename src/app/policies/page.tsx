@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Our Policies & FAQs',
-  description: 'Policies, procedures, and frequently asked questions at The Notchernest.',
+  description: 'Policies, procedures, and frequently asked questions at The Nurture Nest.',
 };
 
 const faqs = [
@@ -25,7 +25,7 @@ export default function PoliciesPage() {
             Our Policies & FAQs
           </h1>
           <p className="text-xl text-slate-600 mb-10">
-            Key policies and answers to common questions about The Notchernest.
+            Key policies and answers to common questions about The Nurture Nest.
           </p>
 
           <section className="space-y-10">

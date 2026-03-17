@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'A Typical Day at Nursery',
-  description: 'Explore a typical day filled with learning, play, healthy meals, and rest at The Notchernest.',
+  description: 'Explore a typical day filled with learning, play, healthy meals, and rest at The Nurture Nest.',
 };
 
 export default function TypicalDayPage() {

@@ -3,7 +3,7 @@ import PageLayout from '@/app/PageLayout';
 
 export const metadata = {
   title: 'Nursery Fees',
-  description: 'Fees and funding information for The Notchernest Multilingual Nursery.',
+  description: 'Fees and funding information for The Nurture Nest Multilingual Nursery.',
 };
 
 export default function FeesPage() {

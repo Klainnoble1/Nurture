@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 
 export const metadata = {
   title: 'Contact Us',
-  description: 'Visit or get in touch with The Notchernest Multilingual Nursery, central London SE1.',
+  description: 'Visit or get in touch with The Nurture Nest Multilingual Nursery, central London SE1.',
 };
 
 export default function ContactPage() {
@@ -18,8 +18,8 @@ export default function ContactPage() {
 
   const socialLinks = [
     { name: 'Instagram', icon: '📸', href: 'https://instagram.com/nurturenestmultilingualnursery' },
-    { name: 'Facebook', icon: '👤', href: 'https://facebook.com/nurturenestmultilingualnursery' },
-    { name: 'TikTok', icon: '🎵', href: 'https://tiktok.com/@nurturenestmultilingualnursery' },
+    { name: 'Facebook', icon: '👤', href: 'https://web.facebook.com/people/Nurture-Nest/pfbid02pinp2dr9nJpZfsySf5CForAPHFjMrzA9YdUiAJ5E8eayJssM5doqf1sRrzHkfx96l/?mibextid' },
+    { name: 'TikTok', icon: '🎵', href: 'https://www.tiktok.com/@nurturenestmultil?_r=1&_t=ZN-94lWpdLvziI' },
     { name: 'WhatsApp', icon: '💬', href: 'https://wa.me/442046421388' },
   ];
 
