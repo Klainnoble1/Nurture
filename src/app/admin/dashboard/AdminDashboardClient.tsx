@@ -13,7 +13,22 @@ const ROOMS = [
 
 type Enquiry = { id: string; name: string; email: string; contact_number: string; enquiry_text: string; created_at: string; status: string };
 type Tour = { id: string; name: string; email: string; contact_number: string; preferred_type: string; marketing_opt_in: boolean; created_at: string; status: string };
-type Application = { id: string; parent_name: string; email: string; mobile: string; child_name: string; child_dob: string; child_age: string; start_date: string; created_at: string; status: string };
+type AdditionalChild = { child_name?: string; child_dob?: string; child_age?: string; start_date?: string };
+type Application = {
+  id: string;
+  parent_name: string;
+  parent_dob?: string | null;
+  email: string;
+  mobile: string;
+  child_name: string;
+  child_dob: string;
+  child_age: string;
+  start_date: string;
+  has_multiple_children?: boolean;
+  additional_children?: AdditionalChild[] | null;
+  created_at: string;
+  status: string;
+};
 type GalleryImage = { filename: string; room: string; url: string };
 
 function Badge({ status }: { status: string }) {
@@ -37,6 +52,20 @@ function Badge({ status }: { status: string }) {
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function hasPhoneNumber(phone?: string | null) {
+  if (!phone) return false;
+  const normalized = phone.trim().toLowerCase();
+  return normalized.length > 0 && normalized !== 'not provided';
+}
+
+function getAdditionalChildren(application: Application) {
+  if (!Array.isArray(application.additional_children)) return [];
+
+  return application.additional_children.filter(
+    child => Boolean(child?.child_name || child?.child_dob || child?.child_age || child?.start_date)
+  );
 }
 
 export default function AdminDashboardClient() {
@@ -212,7 +241,10 @@ export default function AdminDashboardClient() {
                             </div>
                             <div className="min-w-0">
                               <p className="font-semibold text-slate-900 truncate">{e.name}</p>
-                              <p className="text-xs text-slate-500">{e.email} · {e.contact_number}</p>
+                              <p className="text-xs text-slate-500">
+                                {e.email}
+                                {hasPhoneNumber(e.contact_number) ? ` | ${e.contact_number}` : ''}
+                              </p>
                             </div>
                           </div>
                           <div className="flex items-center gap-3 flex-shrink-0">
@@ -228,9 +260,11 @@ export default function AdminDashboardClient() {
                               <a href={`mailto:${e.email}`} className="text-xs px-3 py-1.5 bg-nest-600 text-white rounded-lg hover:bg-nest-700 transition font-medium">
                                 Reply by email
                               </a>
-                              <a href={`tel:${e.contact_number}`} className="text-xs px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition font-medium">
-                                Call
-                              </a>
+                              {hasPhoneNumber(e.contact_number) && (
+                                <a href={`tel:${e.contact_number}`} className="text-xs px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition font-medium">
+                                  Call
+                                </a>
+                              )}
                             </div>
                           </div>
                         )}
@@ -315,7 +349,7 @@ export default function AdminDashboardClient() {
                             </div>
                             <div className="min-w-0">
                               <p className="font-semibold text-slate-900 truncate">Child: {a.child_name}</p>
-                              <p className="text-xs text-slate-500">Parent: {a.parent_name} · Start: {a.start_date}</p>
+                              <p className="text-xs text-slate-500">Parent: {a.parent_name} | Start: {a.start_date}</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-3 flex-shrink-0">
@@ -328,6 +362,7 @@ export default function AdminDashboardClient() {
                           <div className="px-4 pb-4 border-t border-slate-100 bg-slate-50">
                             <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-slate-600">
                               <p><span className="font-semibold">Parent:</span> {a.parent_name}</p>
+                              <p><span className="font-semibold">Parent DOB:</span> {a.parent_dob || 'Not provided'}</p>
                               <p><span className="font-semibold">Email:</span> {a.email}</p>
                               <p><span className="font-semibold">Mobile:</span> {a.mobile}</p>
                               <p><span className="font-semibold">Child name:</span> {a.child_name}</p>
@@ -335,6 +370,24 @@ export default function AdminDashboardClient() {
                               <p><span className="font-semibold">Child age:</span> {a.child_age}</p>
                               <p><span className="font-semibold">Start date:</span> {a.start_date}</p>
                             </div>
+                            {getAdditionalChildren(a).length > 0 && (
+                              <div className="mt-4 border-t border-slate-200 pt-4">
+                                <p className="text-sm font-semibold text-slate-800 mb-3">Additional Children</p>
+                                <div className="space-y-3">
+                                  {getAdditionalChildren(a).map((child, index) => (
+                                    <div key={`${a.id}-child-${index}`} className="rounded-xl border border-slate-200 bg-white p-3">
+                                      <p className="text-sm font-semibold text-slate-800 mb-2">Child {index + 2}</p>
+                                      <div className="grid grid-cols-2 gap-2 text-sm text-slate-600">
+                                        <p><span className="font-semibold">Name:</span> {child.child_name || 'Not provided'}</p>
+                                        <p><span className="font-semibold">DOB:</span> {child.child_dob || 'Not provided'}</p>
+                                        <p><span className="font-semibold">Age:</span> {child.child_age || 'Not provided'}</p>
+                                        <p><span className="font-semibold">Start date:</span> {child.start_date || 'Not provided'}</p>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
                             <div className="mt-3 flex gap-2">
                               <a href={`mailto:${a.email}`} className="text-xs px-3 py-1.5 bg-nest-600 text-white rounded-lg hover:bg-nest-700 transition font-medium">
                                 Reply by email

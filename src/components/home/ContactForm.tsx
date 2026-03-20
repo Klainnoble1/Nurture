@@ -20,8 +20,9 @@ export default function ContactForm() {
       await submitWebsiteForm({
         name: formData.get('name'),
         email: formData.get('email'),
-        message: formData.get('message'),
-        formType: 'contact',
+        contact_number: formData.get('contact_number') || 'Not provided',
+        enquiry_text: formData.get('message'),
+        formType: 'enquiry',
       });
 
       form.reset();
@@ -92,6 +93,19 @@ export default function ContactForm() {
             placeholder="jane@example.com"
           />
         </div>
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="contact-phone" className="block text-sm font-bold text-slate-700 ml-1">
+          Phone Number <span className="text-slate-400 font-medium">(Optional)</span>
+        </label>
+        <input
+          id="contact-phone"
+          name="contact_number"
+          type="tel"
+          className="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-nest-500/10 focus:border-nest-500 transition-all placeholder:text-slate-400"
+          placeholder="0204 642 1388"
+        />
       </div>
 
       <div className="space-y-2">
