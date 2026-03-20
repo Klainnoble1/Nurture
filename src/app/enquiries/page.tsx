@@ -1,17 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import { submitWebsiteForm } from '@/lib/submitWebsiteForm';
 
 export default function EnquiriesPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage(null);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -21,21 +25,16 @@ export default function EnquiriesPage() {
     };
 
     try {
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        (e.target as HTMLFormElement).reset();
-      } else {
-        setSubmitStatus('error');
-      }
+      await submitWebsiteForm(data);
+      setSubmitStatus('success');
+      form.reset();
     } catch (error) {
-      console.error(error);
       setSubmitStatus('error');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'There was an error submitting your enquiry. Please try again later.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -72,9 +71,9 @@ export default function EnquiriesPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
-              {submitStatus === 'error' && (
+              {submitStatus === 'error' && errorMessage && (
                 <div className="p-4 bg-red-50 text-red-600 rounded-xl text-sm font-medium">
-                  There was an error submitting your enquiry. Please try again later.
+                  {errorMessage}
                 </div>
               )}
 

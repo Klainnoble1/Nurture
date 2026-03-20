@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { submitWebsiteForm } from '@/lib/submitWebsiteForm';
 
 export default function TourPopOut() {
   const router = useRouter();
@@ -10,6 +11,7 @@ export default function TourPopOut() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Prevent background scrolling when open
   useEffect(() => {
@@ -28,14 +30,17 @@ export default function TourPopOut() {
   const closePopOut = () => {
     router.push(window.location.pathname, { scroll: false });
     setSubmitStatus('idle');
+    setErrorMessage(null);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage(null);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -46,22 +51,16 @@ export default function TourPopOut() {
     };
 
     try {
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-      } else {
-        setSubmitStatus('error');
-      }
+      await submitWebsiteForm(data);
+      form.reset();
+      setSubmitStatus('success');
     } catch (error) {
-      console.error(error);
       setSubmitStatus('error');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'There was an error submitting your request. Please try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -121,9 +120,9 @@ export default function TourPopOut() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
-              {submitStatus === 'error' && (
+              {submitStatus === 'error' && errorMessage && (
                 <div className="p-4 bg-red-50 text-red-600 rounded-xl text-sm font-medium">
-                  There was an error submitting your request. Please try again.
+                  {errorMessage}
                 </div>
               )}
 

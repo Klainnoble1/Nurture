@@ -1,10 +1,6 @@
-import type { ESLint } from 'eslint'
-
-const config: ESLint.ConfigData = {
-  extends: ['next/core-web-vitals'],
-  rules: {
-    'react/no-unescaped-entities': 'warn',
-  },
+{
+  "extends": ["next/core-web-vitals"],
+  "rules": {
+    "react/no-unescaped-entities": "warn"
+  }
 }
-
-export default config

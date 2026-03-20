@@ -1,67 +1,126 @@
+import fs from 'fs/promises';
+import path from 'path';
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase';
+import { hasSupabaseServiceRole, supabaseAdmin } from '@/lib/supabase';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder');
 const DEFAULT_TO_EMAIL = 'admin@nurturenestmultilingualnursery.com';
 const DEFAULT_FROM_EMAIL = 'The Nurture Nest Website <onboarding@resend.dev>';
+const PLACEHOLDER_RESEND_KEY = 'your_resend_api_key';
+const LOCAL_SUBMISSIONS_FILE = path.join(
+  process.cwd(),
+  '.tmp',
+  'form-submissions.ndjson'
+);
+
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey || apiKey === PLACEHOLDER_RESEND_KEY) {
+    return null;
+  }
+
+  return new Resend(apiKey);
+}
+
+async function saveLocalSubmission(formType: string, fields: Record<string, unknown>) {
+  await fs.mkdir(path.dirname(LOCAL_SUBMISSIONS_FILE), { recursive: true });
+  await fs.appendFile(
+    LOCAL_SUBMISSIONS_FILE,
+    `${JSON.stringify({
+      formType,
+      fields,
+      receivedAt: new Date().toISOString(),
+    })}\n`,
+    'utf8'
+  );
+}
 
 export async function POST(req: Request) {
   try {
     const data = await req.json();
     const { formType, ...fields } = data;
-    
-    // In local development or if Supabase isn't fully linked with service role, 
-    // it's safer to use the standard client for public inserts mapped by RLS 
-    // or log and bypass if not configured. Using supabaseAdmin here as instructed.
-    const supabase = supabaseAdmin();
-    
-    // Destination mailbox for all form notifications.
+
+    const supabase = hasSupabaseServiceRole() ? supabaseAdmin() : null;
+    const resend = getResendClient();
     const toEmail = process.env.CONTACT_FORM_EMAIL || DEFAULT_TO_EMAIL;
     const fromEmail = process.env.RESEND_FROM_EMAIL || DEFAULT_FROM_EMAIL;
+    const allowLocalFallback = process.env.NODE_ENV !== 'production';
+
     let dbSaved = false;
-    
+    let emailSent = false;
+    let fileSaved = false;
     let subject = 'New Form Submission';
     let htmlContent = '';
+    let lastDbError: unknown = null;
 
     const saveFallbackSubmission = async (message: string) => {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([{
+      if (!supabase) return;
+
+      const { error } = await supabase.from('contact_submissions').insert([
+        {
           name: fields.name || fields.parent_name || 'Unknown',
           email: fields.email || 'unknown@example.com',
           phone: fields.contact_number || fields.mobile || null,
           message,
           status: 'new',
-        }]);
+        },
+      ]);
 
-      if (error) throw error;
+      if (error) {
+        lastDbError = error;
+        console.error('Supabase fallback save failed:', error);
+        return;
+      }
+
       dbSaved = true;
     };
-    
-    // Handle different form types mapped directly to SQL tables created previously
-    if (formType === 'enquiry') {
-      // 1. Database Insert
-      const { error: dbError } = await supabase
-        .from('enquiries')
-        .insert([{
+
+    const saveSubmission = async (
+      table: string,
+      payload: Record<string, unknown>,
+      fallbackMessage?: string
+    ) => {
+      if (!supabase) return;
+
+      const { error } = await supabase.from(table).insert([payload]);
+
+      if (!error) {
+        dbSaved = true;
+        return;
+      }
+
+      if (error.code === 'PGRST205' && fallbackMessage) {
+        await saveFallbackSubmission(fallbackMessage);
+        return;
+      }
+
+      lastDbError = error;
+      console.error(`Supabase save failed for ${table}:`, error);
+    };
+
+    if (formType === 'contact') {
+      await saveFallbackSubmission(String(fields.message ?? ''));
+
+      subject = `Website Contact Message from ${fields.name}`;
+      htmlContent = `
+        <h2>New Website Contact Message</h2>
+        <p><strong>Name:</strong> ${fields.name}</p>
+        <p><strong>Email:</strong> ${fields.email}</p>
+        <p><strong>Message:</strong><br/>${fields.message}</p>
+      `;
+    } else if (formType === 'enquiry') {
+      await saveSubmission(
+        'enquiries',
+        {
           name: fields.name,
           email: fields.email,
           contact_number: fields.contact_number,
           enquiry_text: fields.enquiry_text,
-        }]);
-        
-      if (dbError) {
-        if (dbError.code === 'PGRST205') {
-          await saveFallbackSubmission(`Enquiry: ${fields.enquiry_text ?? ''}`);
-        } else {
-          throw dbError;
-        }
-      } else {
-        dbSaved = true;
-      }
+        },
+        `Enquiry: ${fields.enquiry_text ?? ''}`
+      );
 
-      // 2. Email prep
       subject = `New Enquiry from ${fields.name}`;
       htmlContent = `
         <h2>New General Enquiry</h2>
@@ -70,30 +129,19 @@ export async function POST(req: Request) {
         <p><strong>Contact Number:</strong> ${fields.contact_number}</p>
         <p><strong>Enquiry:</strong><br/>${fields.enquiry_text}</p>
       `;
-      
     } else if (formType === 'tour') {
-      const { error: dbError } = await supabase
-        .from('tours')
-        .insert([{
+      await saveSubmission(
+        'tours',
+        {
           name: fields.name,
           email: fields.email,
           contact_number: fields.contact_number,
           preferred_type: fields.preferred_type,
           marketing_opt_in: fields.marketing_opt_in,
-        }]);
-        
-      if (dbError) {
-        if (dbError.code === 'PGRST205') {
-          await saveFallbackSubmission(
-            `Tour request. Preferred type: ${fields.preferred_type ?? 'N/A'}. Marketing opt-in: ${fields.marketing_opt_in ? 'Yes' : 'No'}.`
-          );
-        } else {
-          throw dbError;
-        }
-      } else {
-        dbSaved = true;
-      }
-      
+        },
+        `Tour request. Preferred type: ${fields.preferred_type ?? 'N/A'}. Marketing opt-in: ${fields.marketing_opt_in ? 'Yes' : 'No'}.`
+      );
+
       subject = `Nursery Tour Request: ${fields.name}`;
       htmlContent = `
         <h2>New Nursery Tour Request</h2>
@@ -103,11 +151,10 @@ export async function POST(req: Request) {
         <p><strong>Preferred Type:</strong> ${fields.preferred_type}</p>
         <p><strong>Marketing Opt-in:</strong> ${fields.marketing_opt_in ? 'Yes' : 'No'}</p>
       `;
-      
     } else if (formType === 'join') {
-      const { error: dbError } = await supabase
-        .from('applications')
-        .insert([{
+      await saveSubmission(
+        'applications',
+        {
           parent_name: fields.parent_name,
           parent_dob: fields.parent_dob,
           mobile: fields.mobile,
@@ -118,20 +165,10 @@ export async function POST(req: Request) {
           start_date: fields.start_date,
           has_multiple_children: fields.has_multiple_children,
           additional_children: fields.additional_children,
-        }]);
-        
-      if (dbError) {
-        if (dbError.code === 'PGRST205') {
-          await saveFallbackSubmission(
-            `Join application for child ${fields.child_name ?? 'N/A'} starting ${fields.start_date ?? 'N/A'}.`
-          );
-        } else {
-          throw dbError;
-        }
-      } else {
-        dbSaved = true;
-      }
-      
+        },
+        `Join application for child ${fields.child_name ?? 'N/A'} starting ${fields.start_date ?? 'N/A'}.`
+      );
+
       subject = `New Nursery Registration Application: ${fields.parent_name}`;
       htmlContent = `
         <h2>New Nursery Registration Application</h2>
@@ -140,7 +177,7 @@ export async function POST(req: Request) {
         <p><strong>DOB:</strong> ${fields.parent_dob}</p>
         <p><strong>Mobile:</strong> ${fields.mobile}</p>
         <p><strong>Email:</strong> ${fields.email}</p>
-        
+
         <h3>Child 1 Details</h3>
         <p><strong>Name:</strong> ${fields.child_name}</p>
         <p><strong>DOB:</strong> ${fields.child_dob}</p>
@@ -162,27 +199,40 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid form type' }, { status: 400 });
     }
 
-    // 3. Send Email using Resend.
-    // Never fail the whole submission if email delivery fails after DB insert.
-    let emailSent = false;
-    if (process.env.RESEND_API_KEY) {
+    if (resend) {
       try {
         await resend.emails.send({
           from: fromEmail,
           to: [toEmail],
-          subject: subject,
+          subject,
           html: htmlContent,
         });
         emailSent = true;
-      } catch (emailError) {
-        console.error('Resend email delivery failed:', emailError);
+      } catch (error) {
+        console.error('Resend email delivery failed:', error);
       }
     } else {
-      console.warn('RESEND_API_KEY is not set. Email was not sent, but database insertion succeeded.');
+      console.warn('RESEND_API_KEY is not configured. Email delivery was skipped.');
     }
 
-    return NextResponse.json({ success: true, emailSent, dbSaved });
-    
+    if (!dbSaved && !emailSent && allowLocalFallback) {
+      await saveLocalSubmission(String(formType), fields);
+      fileSaved = true;
+    }
+
+    if (!dbSaved && !emailSent && !fileSaved) {
+      return NextResponse.json(
+        {
+          error:
+            lastDbError instanceof Error
+              ? lastDbError.message
+              : 'No form delivery backend is available. Configure Supabase or a valid Resend API key.',
+        },
+        { status: 503 }
+      );
+    }
+
+    return NextResponse.json({ success: true, emailSent, dbSaved, fileSaved });
   } catch (error: any) {
     console.error('Form submission error:', error);
     return NextResponse.json(

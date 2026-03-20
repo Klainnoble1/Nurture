@@ -1,18 +1,22 @@
 'use client';
 
 import { useState } from 'react';
+import { submitWebsiteForm } from '@/lib/submitWebsiteForm';
 
 export default function JoinNurseryPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [hasMultipleChildren, setHasMultipleChildren] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage(null);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = {
       parent_name: formData.get('parent_name'),
       parent_dob: formData.get('parent_dob'),
@@ -33,22 +37,17 @@ export default function JoinNurseryPage() {
     };
 
     try {
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        (e.target as HTMLFormElement).reset();
-        setHasMultipleChildren(false);
-      } else {
-        setSubmitStatus('error');
-      }
+      await submitWebsiteForm(data);
+      setSubmitStatus('success');
+      form.reset();
+      setHasMultipleChildren(false);
     } catch (error) {
-      console.error(error);
       setSubmitStatus('error');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'There was an error submitting your form. Please check your connection and try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -93,10 +92,10 @@ export default function JoinNurseryPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-12 relative z-10">
-              {submitStatus === 'error' && (
+              {submitStatus === 'error' && errorMessage && (
                 <div className="p-5 bg-red-50 text-red-700 rounded-2xl text-sm font-medium border border-red-100 flex items-center gap-3">
                   <span className="text-xl">⚠️</span>
-                  There was an error submitting your form. Please check your connection and try again.
+                  {errorMessage}
                 </div>
               )}
 
